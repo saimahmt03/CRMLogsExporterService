@@ -1,0 +1,87 @@
+-----------------------------------------------------------------------
+SYSTEM DESIGN
+-----------------------------------------------------------------------
+
++----------------------+
+| Windows Service      |
+| (.NET Framework 4.8) |
++----------+-----------+
+           |
+           |
+           +--------------------+
+           |                    |
+           ▼                    ▼
+   Dynamics CRM 2015      SharePoint 2013
+      (Read Logs)           (Upload CSV)
+           |
+           ▼
+     Generate CSV
+           |
+           ▼
+      Archive / Logs
+
+
+-----------------------------------------------------------------------
+PROJECT STRUCTURE
+-----------------------------------------------------------------------
+
+Maynilad.WindowsService
+│
+├── Program.cs
+├── MyWindowsService.cs
+│
+├── Configuration
+│   ├── CrmSettings.cs
+│   ├── SharePointSettings.cs
+│   ├── CsvSettings.cs
+│   └── ServiceSettings.cs
+│
+├── Interfaces
+│   ├── ICrmService.cs
+│   ├── ISharePointService.cs
+│   ├── ICsvService.cs
+│   ├── ILogService.cs
+│   └── IJobProcessor.cs
+│
+├── Services
+│   ├── CrmService.cs
+│   ├── SharePointService.cs
+│   ├── CsvService.cs
+│   ├── LogService.cs
+│   └── JobProcessor.cs
+│
+├── Models
+│   ├── CrmLog.cs
+│   └── CsvRecord.cs
+│
+├── Helpers
+│   ├── FileHelper.cs
+│   ├── DateHelper.cs
+│   └── RetryHelper.cs
+│
+├── Logs
+│
+└── App.config
+
+-------------------------------------------------------------------------------------------------
+DEFINITION
+-------------------------------------------------------------------------------------------------
+Configuration
+- This folder should contain only configuration classes.
+
+
+--------------------------------------------------------------------------------------------------
+REQUIREMENT REFERENCE
+--------------------------------------------------------------------------------------------------
+* System.Configuration
+* System.ServiceModel
+
+How to add:
+1.Right-click References.
+2.Click Add Reference...
+3.Go to Assemblies → Framework.
+4.Check Reference Accordingly.
+5.Click OK
+
+
+
